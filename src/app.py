@@ -38,6 +38,42 @@ activities = {
       "schedule": "Segundas, quartas e sextas, 14h - 15h",
       "max_participants": 30,
       "participants": ["john@mergington.edu", "olivia@mergington.edu"]
+   },
+   "Clube de Debate": {
+      "description": "Desenvolva habilidades de argumentação e oratória",
+      "schedule": "Quartas, 16h - 17h30",
+      "max_participants": 15,
+      "participants": ["lucas@mergington.edu"]
+   },
+   "Clube de Robótica": {
+      "description": "Construa e programe robôs para competições",
+      "schedule": "Segundas e quartas, 16h - 17h30",
+      "max_participants": 18,
+      "participants": ["alice@mergington.edu", "andre@mergington.edu"]
+   },
+   "Aula de Dança": {
+      "description": "Aprenda diferentes estilos de dança e coreografias",
+      "schedule": "Terças e quintas, 17h - 18h",
+      "max_participants": 25,
+      "participants": ["isabella@mergington.edu"]
+   },
+   "Clube de Artes Plásticas": {
+      "description": "Explore pintura, escultura e outras técnicas artísticas",
+      "schedule": "Sextas, 16h - 17h30",
+      "max_participants": 20,
+      "participants": ["carlos@mergington.edu", "marina@mergington.edu"]
+   },
+   "Voleibol": {
+      "description": "Treino e competições de voleibol",
+      "schedule": "Terças e quintas, 14h - 15h30",
+      "max_participants": 24,
+      "participants": ["paulo@mergington.edu"]
+   },
+   "Tênis de Mesa": {
+      "description": "Aprenda e compita no esporte de tênis de mesa",
+      "schedule": "Segundas e quartas, 15h30 - 17h",
+      "max_participants": 16,
+      "participants": ["julia@mergington.edu", "rafael@mergington.edu"]
    }
 }
 
@@ -61,6 +97,10 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specificy activity
     activity = activities[activity_name]
+
+    # Check if student is already signed up
+    if email in activity["participants"]:
+      raise HTTPException(status_code=400, detail="Aluno já inscrito nesta atividade") 
 
     # Add student
     activity["participants"].append(email)
